@@ -12,4 +12,3 @@ The workshop assumes that you know and have access to the following resources:
 - [x] Node.js
 - [x] GNU Make
 - [x] [Azure DevOps Account](https://azure.microsoft.com/en-us/services/devops/)
-

@@ -1,0 +1,56 @@
+{
+  "manifestVersion": 1,
+  "id": "hello-world-extension",
+  "publisher": "Biswajit",
+  "version": "0.0.1",
+  "name": "Hello World Extension",
+  "description": "Demo extension to print message using an azure pipeline task",
+  "public": true,
+  "categories": ["Azure Pipelines"],
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services"
+    }
+  ],
+  "icons": {
+    "default": "logo.png"
+  },
+  "content": {
+    "details": {
+      "path": "overview.md"
+    }
+  },
+  "tags": ["Demo", "Hello-World", "Workshop"],
+  "links": {
+    "home": {
+      "uri": "https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop"
+    },
+    "repository": {
+      "uri": "https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "uri": "https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop"
+  },
+  "branding": {
+    "color": "#ff24d7",
+    "theme": "light"
+  },
+  "contributions": [
+    {
+      "id": "HelloWorld",
+      "type": "ms.vss-distributed-task.task",
+      "targets": ["ms.vss-distributed-task.tasks"],
+      "properties": {
+        "name": "HelloWorld"
+      }
+    }
+  ],
+  "files": [
+    {
+      "path": "./HelloWorld"
+    }
+  ],
+  "scopes": ["vso.serviceendpoint_query"]
+}

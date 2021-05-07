@@ -1,2 +1,11 @@
 .vscode/
 .idea/
+
+**/node_modules/
+
+# log files
+*.log
+
+# Javascript builds
+*.js
+*.js.map
