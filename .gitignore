@@ -9,3 +9,6 @@
 # Javascript builds
 *.js
 *.js.map
+
+# Build directory
+src/build/
