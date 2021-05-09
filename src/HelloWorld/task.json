@@ -1,0 +1,21 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+  "id": "a8757e81-a7ed-441c-ba56-9caa9bf00372",
+  "name": "HelloWorld",
+  "friendlyName": "HelloWorld",
+  "description": "Prints hello world in pipeline",
+  "helpMarkDown": "Demo task to print hello world on pipeline",
+  "category": "Utility",
+  "author": "Biswajit Roy",
+  "version": {
+      "Major": 0,
+      "Minor": 0,
+      "Patch": 1
+  },
+  "inputs": [],
+  "execution": {
+      "Node10": {
+          "target": "index.js"
+      }
+  }
+}

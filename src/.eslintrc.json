@@ -1,3 +1,5 @@
 {
-  "extends": "./node_modules/gts/"
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": ["plugin:@typescript-eslint/recommended"] // this is optional 
 }
