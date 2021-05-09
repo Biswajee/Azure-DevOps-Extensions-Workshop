@@ -1,7 +1,5 @@
 # Azure DevOps Extensions Workshop
 
-[![Code Style: Google](https://img.shields.io/badge/code%20style-google-blueviolet.svg)](https://github.com/google/gts)
-
 This repository contains modules for the workshop on building azure devops extensions
 to help collegues get started with [azure devops extensions](https://docs.microsoft.com/en-us/azure/devops/extend/overview?view=azure-devops)
 
