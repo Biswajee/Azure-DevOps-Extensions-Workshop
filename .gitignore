@@ -12,3 +12,5 @@
 
 # Build directory
 src/build/
+.nyc_output/
+coverage/
