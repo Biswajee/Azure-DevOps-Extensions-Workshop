@@ -25,6 +25,7 @@ variables:
 stages:
     - stage: Test
       displayName: Test
+      jobs:
       strategy:
         matrix:
           ubuntu14:
@@ -33,7 +34,6 @@ stages:
             containerImage: ubuntu:18.04
           ubuntu18:
             containerImage: ubuntu:20.04
-      jobs:
         - job: Test
           steps:
             - bash: make ni
