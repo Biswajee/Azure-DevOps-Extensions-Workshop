@@ -18,8 +18,9 @@ variables:
   codeDirectory: $(Build.SourcesDirectory)/src
   # Extension information
   extensionId: "Global-Extension"
-  publisherId: "Global"
+  publisherId: "tcs-workshop-demo-extension"
   extensionName: "Global Extension"
+  artifactName: "Global-Extension"
 
 stages:
     - stage: Test
@@ -43,11 +44,55 @@ stages:
     - stage: Package
       displayName: Package
       jobs:
+      - job: Package
+        steps:
+        - task: NodeTool@0
+          inputs:
+            versionSpec: '10.x'
+        - task: TfxInstaller@3
+          inputs:
+            version: 'v0.9.x'
+        - task: Npm@1
+          inputs:
+            command: 'install'
+            workingDir: '$(codeDirectory)'
+        - task: Npm@1
+          inputs:
+            command: 'custom'
+            workingDir: '$(codeDirectory)'
+            customCommand: 'run restore'
+        - task: PackageAzureDevOpsExtension@3
+          inputs:
+            rootFolder: '$(codeDirectory)'
+            localizationRoot: '$(codeDirectory)'
+            outputPath: '$(Build.ArtifactStagingDirectory)/Extension'
+            publisherId: '$(publisherId)'
+            extensionId: '$(extensionId)'
+            extensionName: '$(extensionName)'
+            updateTasksVersion: true
+            updateTasksId: true
+            extensionVisibility: 'private'
+        - task: PublishPipelineArtifact@1
+          displayName: Publish artifact $(artifactName)
+          inputs:
+            targetPath: '$(Build.ArtifactStagingDirectory)/Extension'
+            artifactName: '$(artifactName)'
 
-    - stage: Prod
+    - stage: Release
       displayName: Production
       dependsOn: [ Test, Package ]
       pool:
         vmImage: ubuntu-20.04
       condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
       jobs:
+      - job: Release
+        steps:
+        - task: DownloadPipelineArtifact@2
+          inputs:
+            buildType: 'current'
+            artifactName: $(artifactName)
+            targetPath: '$(Pipeline.Workspace)'
+        - task: TfxInstaller@3
+          inputs:
+            version: 'v0.9.x'
+        
