@@ -13,6 +13,9 @@ trigger:
       - src/*
       - az-build-and-release-pipeline.yaml
 
+pool:
+  vmImage: ubuntu-20.04
+
 variables:
   # Directory that contains our code
   codeDirectory: $(Build.SourcesDirectory)/src
@@ -27,8 +30,6 @@ stages:
       displayName: Test
       jobs:
         - job: Test
-          pool:
-            vmImage: ubuntu:20.04
           steps:
             - bash: make ni
               displayName: Install Dependencies
@@ -39,8 +40,6 @@ stages:
       displayName: Package
       jobs:
       - job: Package
-        pool:
-          vmImage: ubuntu:20.04      
         steps:
         - task: NodeTool@0
           inputs:
@@ -77,8 +76,6 @@ stages:
     - stage: Release
       displayName: Production
       dependsOn: [ Test, Package ]
-      pool:
-        vmImage: ubuntu-20.04
       condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
       jobs:
       - job: Release
