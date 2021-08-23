@@ -1,0 +1,53 @@
+trigger:
+  # start a new build for every push if false (default)
+  batch: true
+  branches:
+    # the build pipeline will be triggered for the following branches only
+    include:
+      - master
+      - develop
+      - feature/*
+  paths:
+    # the build pipeline will be triggered when a change is observed in following directories/files
+    include:
+      - src/*
+      - az-build-and-release-pipeline.yaml
+
+variables:
+  # Directory that contains our code
+  codeDirectory: $(Build.SourcesDirectory)/src
+  # Extension information
+  extensionId: "Global-Extension"
+  publisherId: "Global"
+  extensionName: "Global Extension"
+
+stages:
+    - stage: Test
+      displayName: Test
+      strategy:
+        matrix:
+          ubuntu14:
+            containerImage: ubuntu:16.04
+          ubuntu16:
+            containerImage: ubuntu:18.04
+          ubuntu18:
+            containerImage: ubuntu:20.04
+      jobs:
+        - job: Test
+          steps:
+            - bash: make ni
+              displayName: Install Dependencies
+            - bash: make t
+              displayName: Run tests
+
+    - stage: Package
+      displayName: Package
+      jobs:
+
+    - stage: Prod
+      displayName: Production
+      dependsOn: [ Test, Package ]
+      pool:
+        vmImage: ubuntu-20.04
+      condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
+      jobs:
