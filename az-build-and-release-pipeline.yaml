@@ -29,11 +29,12 @@ stages:
         - job: Test
           strategy:
             matrix:
-              ubuntu14:
-                containerImage: ubuntu:16.04
+            maxparallel: 1
               ubuntu16:
-                containerImage: ubuntu:18.04
+                containerImage: ubuntu:16.04
               ubuntu18:
+                containerImage: ubuntu:18.04
+              ubuntu20:
                 containerImage: ubuntu:20.04
           steps:
             - bash: make ni

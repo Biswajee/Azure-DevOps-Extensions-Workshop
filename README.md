@@ -54,4 +54,20 @@ The workshop assumes that you know and have access to the following resources:
 
 Horray! You've completed the first subtask 🎉🎉
 
-### Setting up the pipeline
+### Setup the marketplace service connection
+
+1. Go to the project space where your extension repository is present.
+
+2. `[User Settings]` > `[Personal access tokens]` > `[ + New Token]`.
+    ![User settings location](./demo-images/user-settings.png)
+
+3. `[Project Settings]` > `[Service Connections]` > `[Create Service Connection]`.
+
+4. In the search bar, find **Visual Studio Marketplace**. Click Next.
+
+5. Add your personal access token that you copied.
+
+6. Provide the name of the service connection and an optional description.
+
+7. Make sure the **Grant access permission to all pipelines** is checked ✅.
+
