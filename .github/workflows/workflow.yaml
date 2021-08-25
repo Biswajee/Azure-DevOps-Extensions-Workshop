@@ -15,7 +15,7 @@ on:
 
 jobs:
   test:
-    name: test
+    name: Execute Tests
     runs-on: windows-latest
     steps:
       - name: checkout repo
@@ -31,11 +31,10 @@ jobs:
           make ni
           npm install -g tfx-cli
 
-
       - name: Create vsix file
         run: |
           mkdir src/artifact/
-          cd src/artifact/ && npx tfx-cli extension create
+          cd src && npm run package
 
       - name: upload vsix as artifact
         uses: actions/upload-artifact@v1
