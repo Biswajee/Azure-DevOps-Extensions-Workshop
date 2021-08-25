@@ -27,7 +27,7 @@ jobs:
           node-version: '12.x'
 
       - name: Install dependencies
-        run: make ni
+        run: cd src && npm install
 
       - name: Execute unit tests
         run: make t
@@ -46,7 +46,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          make ni
+          cd src && npm install
           npm install -g tfx-cli
 
       - name: Create vsix file
@@ -74,7 +74,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          make ni
+          cd src && npm install
           npm install -g tfx-cli
       - name: checkout repo
         uses: actions/checkout@v2
