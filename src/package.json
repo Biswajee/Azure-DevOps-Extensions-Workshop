@@ -10,6 +10,7 @@
   "license": "MIT",
   "author": "Biswajit Roy",
   "config": {
+    "tfx_args": "--output-path ./out --manifest-globs vss-extension.json --no-prompt --json --rev-version",
     "mocha_args": "--timeout=3000 --require ts-node/register './{,!(node_modules)/**}/*.spec.ts'"
   },
   "scripts": {
@@ -18,7 +19,10 @@
     "lint": "eslint . --ext .ts",
     "fmt": "prettier --write . && eslint --fix .",
     "prepare": "npm.cmd run compile",
-    "test": "nyc mocha $npm_package_config_mocha_args"
+    "test": "npm run clean && NODE_ENV=test nyc mocha $npm_package_config_mocha_args",
+    "restore": "for i in $(find -maxdepth 2 -mindepth 2 -name package.json -printf '%h\n'); do cd $i; npm install --only=prod --no-package-lock; cd ..; done",
+    "package": "npm run compile && tfx extension create $npm_package_config_tfx_args",
+    "publish": "npm run compile && tfx extension publish $npm_package_config_tfx_args"
   },
   "dependencies": {
     "azure-pipelines-task-lib": "^3.1.2"
@@ -27,9 +31,10 @@
     "@istanbuljs/nyc-config-typescript": "^1.0.1",
     "@types/chai": "^4.2.14",
     "@types/chai-as-promised": "^7.1.3",
-    "@types/mocha": "^8.2.2",
+    "@types/mocha": "^8.2.3",
     "@types/node": "^14.14.44",
     "@types/q": "^1.5.4",
+    "@types/rimraf": "^3.0.0",
     "@types/sinon": "^9.0.10",
     "@types/sinon-chai": "^3.2.5",
     "@typescript-eslint/eslint-plugin": "^4.22.1",

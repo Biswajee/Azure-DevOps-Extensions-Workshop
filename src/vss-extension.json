@@ -1,11 +1,11 @@
 {
   "manifestVersion": 1,
-  "id": "hello-world-extension",
-  "publisher": "Biswajit",
+  "id": "azure-devops-extension-demo",
+  "publisher": "Biswajee",
   "version": "0.0.1",
-  "name": "Hello World Extension",
+  "name": "Azure Devops Extension Demo",
   "description": "Demo extension to print message using an azure pipeline task",
-  "public": true,
+  "public": false,
   "categories": ["Azure Pipelines"],
   "targets": [
     {

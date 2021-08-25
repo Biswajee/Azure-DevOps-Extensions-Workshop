@@ -26,21 +26,22 @@ jobs:
         with:
           node-version: '12.x'
         
-      - name: clean install dependencies
-        run: make ni
-
-      - name: compile and create vsix
-        run: npm run package
-
-      - name: print vsix path
+      - name: Install dependencies
         run: |
-          echo "VSIX Path: ${{ env.vsix_path }}"
+          make ni
+          npm install -g tfx-cli
+
+
+      - name: Create vsix file
+        run: |
+          mkdir src/artifact/
+          cd src/artifact/ && npx tfx-cli extension create
 
       - name: upload vsix as artifact
         uses: actions/upload-artifact@v1
         with:
-          name: vsix-viewer-${{steps.gitversion.outputs.semVer}}.vsix
-          path: ${{github.workspace}}/vsix-viewer-${{steps.gitversion.outputs.semVer}}.vsix
+          name: azure-devops-extension-artifact
+          path: ${{github.workspace}}/src/artifact/
       
       - name: publish to marketplace
         if: github.ref == 'refs/heads/master'
