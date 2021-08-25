@@ -38,13 +38,9 @@ jobs:
 
       - name: Install dependencies
         run: cd src && npm install
-        with:
-          node-version: ${{ matrix.node }}
 
       - name: Execute unit tests
         run: make t
-        with:
-          node-version: ${{ matrix.node }}
 
   package:
     name: Package Extension
