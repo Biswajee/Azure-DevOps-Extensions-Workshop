@@ -1,14 +1,21 @@
 {
-  "main": "dist/index.js",
-  "sideEffects": false,
+  "name": "azure-devops-extension-demo",
+  "version": "1.0.0",
+  "description": "Demo extension for Azure DevOps Extension Workshop",
+  "keywords": [
+    "extensions",
+    "Azure DevOps",
+    "Visual Studio Team Services"
+  ],
+  "license": "MIT",
   "author": "Biswajit Roy",
   "config": {
     "mocha_args": "--timeout=3000 --require ts-node/register './{,!(node_modules)/**}/*.spec.ts'"
   },
   "scripts": {
+    "clean": "rimraf './{,!(node_modules)/**}/*.js'",
+    "compile": "npm run clean && tsc",
     "lint": "eslint . --ext .ts",
-    "clean": "tsc --clean",
-    "compile": "tsc --build",
     "fmt": "prettier --write . && eslint --fix .",
     "prepare": "npm.cmd run compile",
     "test": "nyc mocha $npm_package_config_mocha_args"
