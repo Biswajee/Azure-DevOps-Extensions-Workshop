@@ -16,7 +16,7 @@ on:
 jobs:
   test:
     name: Execute Tests
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     steps:
       - name: checkout repo
         uses: actions/checkout@v2
@@ -25,7 +25,25 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '12.x'
-        
+
+      - name: Install dependencies
+        run: make ni
+
+      - name: Execute unit tests
+        run: make t
+
+  package:
+    name: Package Extension
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
       - name: Install dependencies
         run: |
           make ni
@@ -41,6 +59,30 @@ jobs:
         with:
           name: azure-devops-extension-artifact
           path: ${{github.workspace}}/src/artifact/
+
+  publish:
+    name: Publish Extension
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Install dependencies
+        run: |
+          make ni
+          npm install -g tfx-cli
+      - name: checkout repo
+        uses: actions/checkout@v2
+
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
       
       - name: publish to marketplace
         if: github.ref == 'refs/heads/master'
