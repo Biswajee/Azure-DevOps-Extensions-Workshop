@@ -68,7 +68,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: azure-devops-extension-artifact
-          path: src/**/*.vsix
+          path: ${{github.workspace}}/src/**/*.vsix
 
   publish:
     name: Publish Extension
