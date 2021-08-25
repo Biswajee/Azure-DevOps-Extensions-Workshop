@@ -38,7 +38,7 @@ jobs:
           node-version: ${{ matrix.node }}
 
       - name: Install dependencies
-        run: cd src && npm install
+        run: make ni
 
       - name: Execute unit tests
         run: make t
@@ -58,19 +58,17 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd src && npm install
+          make ni
           npm install -g tfx-cli
 
       - name: Create vsix file
-        run: |
-          mkdir src/artifact/
-          cd src && npm run package
+        run: cd src && npm run package
 
       - name: upload vsix as artifact
         uses: actions/upload-artifact@v1
         with:
           name: azure-devops-extension-artifact
-          path: ${{github.workspace}}/src/artifact/
+          path: src/**/*.vsix
 
   publish:
     name: Publish Extension
@@ -87,7 +85,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd src && npm install
+          make ni
           npm install -g tfx-cli
       - name: checkout repo
         uses: actions/checkout@v2
