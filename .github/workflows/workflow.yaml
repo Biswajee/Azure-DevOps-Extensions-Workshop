@@ -99,10 +99,11 @@ jobs:
         id: download
         with:
           name: azure-devops-extension-artifact
-          path: download/artifact
+          path: ~/download/artifact
 
       - name: Unzip vsix in ${{steps.download.outputs.download-path}}
-        run: unzip download/artifact/azure-devops-extension-artifact*
+        run: unzip azure-devops-extension-artifact*
+        working-directory: ${{steps.download.outputs.download-path}}
 
       - name: Publish to marketplace
         if: github.ref == 'refs/heads/master'
