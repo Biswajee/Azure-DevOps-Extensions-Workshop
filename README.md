@@ -1,5 +1,7 @@
 # Azure DevOps Extensions Workshop
 
+[![Github pipelines](https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop/actions/workflows/workflow.yaml/badge.svg?branch=master)](https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop/actions/workflows/workflow.yaml)
+
 This repository contains modules for the workshop on building azure devops extensions
 to help collegues get started with [azure devops extensions](https://docs.microsoft.com/en-us/azure/devops/extend/overview?view=azure-devops)
 
@@ -30,9 +32,13 @@ The workshop assumes that you know and have access to the following resources:
 4. Create a repository in the first project space for your extension code.
 
 5. We'll need to install the necessary [Azure DevOps Extension Tasks](https://marketplace.visualstudio.com/items?itemName=ms-devlabs.vsts-developer-tools-build-tasks) by Microsoft installed to build and release azure devops extensions.
-    - Install the extension.
+
+    - _Install the extension._
+
       ![Azure DevOps Extension task](./demo-images/azure-devops-ext-task.png)
-    - Check if the extension is correctly installed by visiting <OrganizationName> -> Organization settings -> Extensions.
+
+    - _Check if the extension is correctly installed by visiting <OrganizationName> -> Organization settings -> Extensions._
+
       ![Extension correctly installed](./demo-images/prereq-extension-installed.png)
 
 6. Clone the repository code and delete the current git remote using below steps.
@@ -59,6 +65,7 @@ Horray! You've completed the first subtask 🎉🎉
 1. Go to the project space where your extension repository is present.
 
 2. `[User Settings]` > `[Personal access tokens]` > `[ + New Token]`.
+
     ![User settings location](./demo-images/user-settings.png)
 
 3. `[Project Settings]` > `[Service Connections]` > `[Create Service Connection]`.

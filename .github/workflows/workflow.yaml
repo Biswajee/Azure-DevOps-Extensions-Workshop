@@ -61,8 +61,14 @@ jobs:
           make ni
           npm install -g tfx-cli
 
-      - name: Create vsix file
+      - name: Remove test scripts
+        run: rm -fv ${{github.workspace}}/**/*.spec.ts
+
+      - name: Build project
         run: cd src && npm run package
+      
+      - name: Remove typescript files
+        run: rm -fv ${{github.workspace}}/**/*.ts
 
       - name: Upload vsix as artifact
         uses: actions/upload-artifact@v1
@@ -88,9 +94,19 @@ jobs:
           make ni
           npm install -g tfx-cli
 
+      - name: Download extension artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: azure-devops-extension-artifact
+          path: download/artifact
+
+      - name: Unzip vsix
+        run: unzip azure-devops-extension-artifact*
+        working-directory: download/artifact
+
       - name: Publish to marketplace
         if: github.ref == 'refs/heads/master'
-        run: cd src && npm run publish ${{ env.PAT }}
+        run: cd src && npm run publish ${{ secrets.AZURE_DEVOPS_PAT_TOKEN }}
 
       - name: Create a release
         if: github.ref == 'refs/heads/master'
