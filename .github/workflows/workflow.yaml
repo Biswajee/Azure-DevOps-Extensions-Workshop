@@ -101,13 +101,9 @@ jobs:
           name: azure-devops-extension-artifact
           path: ~/download/artifact
 
-      - name: Publish extension to Marketplace
+      - name: Publish to marketplace
         if: github.ref == 'refs/heads/master'
-        uses: cezarypiatek/VsixPublisherAction@0.2
-        with:
-            extension-file: ${{steps.download.outputs.download-path}}/*.vsix
-            publish-manifest-file: src/vss-extension.json
-            personal-access-code: ${{ secrets.AZURE_DEVOPS_PAT_TOKEN }}
+        run: cd src && npm run publish  --auth-type 'pat' --token ${{ secrets.AZURE_DEVOPS_PAT_TOKEN }} --share-with TCSTechCommWorkshop
 
       - name: Create a release
         if: github.ref == 'refs/heads/master'
