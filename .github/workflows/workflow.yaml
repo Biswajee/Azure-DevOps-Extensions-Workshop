@@ -21,60 +21,60 @@ on:
       - 'feature/**'
 
 jobs:
-  test:
-    name: Execute Tests
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-18.04, ubuntu-20.04]
-        node: [10, 12, 14]
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+  # test:
+  #   name: Execute Tests
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-18.04, ubuntu-20.04]
+  #       node: [10, 12, 14]
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v2
 
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node }}
+  #     - name: Setup node
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: ${{ matrix.node }}
 
-      - name: Install dependencies
-        run: make ni
+  #     - name: Install dependencies
+  #       run: make ni
 
-      - name: Execute unit tests
-        run: make t
+  #     - name: Execute unit tests
+  #       run: make t
 
-  package:
-    name: Package Extension
-    needs: test
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+  # package:
+  #   name: Package Extension
+  #   needs: test
+  #   runs-on: ubuntu-20.04
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v2
 
-      - name: Setup node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '12.x'
+  #     - name: Setup node
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: '12.x'
 
-      - name: Install dependencies
-        run: |
-          make ni
-          npm install -g tfx-cli
+  #     - name: Install dependencies
+  #       run: |
+  #         make ni
+  #         npm install -g tfx-cli
 
-      - name: Remove test scripts
-        run: rm -fv ${{github.workspace}}/**/*.spec.ts
+  #     - name: Remove test scripts
+  #       run: rm -fv ${{github.workspace}}/**/*.spec.ts
 
-      - name: Build project
-        run: cd src && npm run package
+  #     - name: Build project
+  #       run: cd src && npm run package
       
-      - name: Remove typescript files
-        run: rm -fv ${{github.workspace}}/**/*.ts
+  #     - name: Remove typescript files
+  #       run: rm -fv ${{github.workspace}}/**/*.ts
 
-      - name: Upload vsix as artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: azure-devops-extension-artifact
-          path: ${{github.workspace}}/src/out/
+  #     - name: Upload vsix as artifact
+  #       uses: actions/upload-artifact@v1
+  #       with:
+  #         name: azure-devops-extension-artifact
+  #         path: ${{github.workspace}}/src/out/
 
   publish:
     name: Publish Extension
@@ -96,13 +96,13 @@ jobs:
 
       - name: Download extension artifact
         uses: actions/download-artifact@v2
+        id: download
         with:
           name: azure-devops-extension-artifact
           path: download/artifact
 
-      - name: Unzip vsix
-        run: unzip azure-devops-extension-artifact*
-        working-directory: download/artifact
+      - name: Unzip vsix in ${{steps.download.outputs.download-path}}
+        run: unzip download/artifact/azure-devops-extension-artifact*
 
       - name: Publish to marketplace
         if: github.ref == 'refs/heads/master'
