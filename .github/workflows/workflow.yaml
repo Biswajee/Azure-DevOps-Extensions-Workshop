@@ -23,8 +23,8 @@ on:
 env:
   # the name of the azure devops organization where the extension will be shared
   azDoOrganizationName: TCSTechCommWorkshop
-  # the name of the vsix file that will be produced: <publisherId.extensionName-version>
-  vsixFile: Biswajitr.azure-devops-extension-demo-0.0.0
+  # the name of the vsix file that will be produced: <publisherId.extensionName-version>.vsix
+  vsixFile: Biswajitr.azure-devops-extension-demo-0.0.0.vsix
 
 jobs:
   test:
