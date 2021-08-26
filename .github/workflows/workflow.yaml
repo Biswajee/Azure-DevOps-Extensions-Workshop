@@ -103,10 +103,6 @@ jobs:
 
       - name: Publish to marketplace
         if: github.ref == 'refs/heads/master'
-        run: cd src && tfx extension publish --token ${{ secrets.AZURE_DEVOPS_PAT_TOKEN }} --share-with TCSTechCommWorkshop
-
-      - name: Create a release
-        if: github.ref == 'refs/heads/master'
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        run: |
+          make c
+          cd src && tfx extension publish --vsix ${{steps.download.outputs.download-path}} --token ${{ secrets.AZURE_DEVOPS_PAT_TOKEN }} --share-with TCSTechCommWorkshop

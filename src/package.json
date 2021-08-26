@@ -21,8 +21,7 @@
     "prepare": "npm run compile",
     "test": "npm run clean && NODE_ENV=test nyc mocha $npm_package_config_mocha_args",
     "restore": "for i in $(find -maxdepth 2 -mindepth 2 -name package.json -printf '%h\n'); do cd $i; npm install --only=prod --no-package-lock; cd ..; done",
-    "package": "npm run compile && tfx extension create $npm_package_config_tfx_args",
-    "publish": "npm run compile && tfx extension publish $npm_package_config_tfx_args"
+    "package": "npm run compile && tfx extension create $npm_package_config_tfx_args"
   },
   "dependencies": {
     "azure-pipelines-task-lib": "^3.1.2"
