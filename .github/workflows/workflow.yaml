@@ -20,6 +20,12 @@ on:
       # match an pushes on feature/* and feature/<any sub branch>/*
       - 'feature/**'
 
+env:
+  # the name of the azure devops organization where the extension will be shared
+  azDoOrganizationName: TCSTechCommWorkshop
+  # the name of the vsix file that will be produced: <publisherId.extensionName-version>
+  vsixFile: Biswajitr.azure-devops-extension-demo-0.0.0
+
 jobs:
   test:
     name: Execute Tests
@@ -105,4 +111,4 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: |
           make c
-          cd src && tfx extension publish --vsix ${{steps.download.outputs.download-path}} --token ${{ secrets.AZURE_DEVOPS_PAT_TOKEN }} --share-with TCSTechCommWorkshop
+          cd src && tfx extension publish --vsix ${{steps.download.outputs.download-path}}/${{ env.vsixFile }} --token ${{ secrets.AZURE_DEVOPS_PAT_TOKEN }} --share-with ${{ env.azDoOrganizationName }}
