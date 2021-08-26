@@ -78,7 +78,7 @@ jobs:
 
   publish:
     name: Publish Extension
-    needs: [ test, package ]
+    # needs: [ test, package ]
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout repo
