@@ -102,7 +102,7 @@ jobs:
           path: ~/download/artifact
 
       - name: Unzip vsix in ${{steps.download.outputs.download-path}}
-        run: unzip azure-devops-extension-artifact*
+        run: ls -l
         working-directory: ${{steps.download.outputs.download-path}}
 
       - name: Publish to marketplace
