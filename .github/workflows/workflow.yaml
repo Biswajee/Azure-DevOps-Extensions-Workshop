@@ -101,13 +101,13 @@ jobs:
           name: azure-devops-extension-artifact
           path: ~/download/artifact
 
-      - name: Unzip vsix in ${{steps.download.outputs.download-path}}
-        run: ls -l
-        working-directory: ${{steps.download.outputs.download-path}}
-
-      - name: Publish to marketplace
+      - name: Publish extension to Marketplace
         if: github.ref == 'refs/heads/master'
-        run: cd src && npm run publish ${{ secrets.AZURE_DEVOPS_PAT_TOKEN }}
+        uses: cezarypiatek/VsixPublisherAction@0.2
+        with:
+            extension-file: ${{steps.download.outputs.download-path}}/*.vsix
+            publish-manifest-file: src/vss-extension.json
+            personal-access-code: ${{ secrets.AZURE_DEVOPS_PAT_TOKEN }}
 
       - name: Create a release
         if: github.ref == 'refs/heads/master'
