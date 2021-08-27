@@ -20,7 +20,7 @@
       "path": "overview.md"
     }
   },
-  "tags": ["Demo", "Hello-World", "Workshop"],
+  "tags": ["Demo", "Hello-World", "Workshop, Azure DevOps Extension Workshop"],
   "links": {
     "home": {
       "uri": "https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop"
@@ -45,8 +45,7 @@
       "properties": {
         "name": "HelloWorld"
       }
-    }
-  ],
+    }],
   "files": [
     {
       "path": "./HelloWorld"

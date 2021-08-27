@@ -21,9 +21,12 @@ variables:
   codeDirectory: $(Build.SourcesDirectory)/src
   # Extension information
   extensionId: "Global-Extension"
-  publisherId: "tcs-workshop-demo-extension"
+  publisherId: "Biswajitr"
   extensionName: "Global Extension"
   artifactName: "Global-Extension"
+  shareWithOrganization: "Biswajitr"
+  shareWithOrganization.URLs: "https://dev.azure.com/biswajitr"
+  marketplaceServiceConnectionName: "Extension-Marketplace"
 
 stages:
     - stage: Test
@@ -50,20 +53,20 @@ stages:
         - task: Npm@1
           inputs:
             command: 'install'
-            workingDir: '$(codeDirectory)'
+            workingDir: $(codeDirectory)
         - task: Npm@1
           inputs:
             command: 'custom'
-            workingDir: '$(codeDirectory)'
+            workingDir: $(codeDirectory)
             customCommand: 'run restore'
         - task: PackageAzureDevOpsExtension@3
           inputs:
-            rootFolder: '$(codeDirectory)'
-            localizationRoot: '$(codeDirectory)'
-            outputPath: '$(Build.ArtifactStagingDirectory)/Extension'
-            publisherId: '$(publisherId)'
-            extensionId: '$(extensionId)'
-            extensionName: '$(extensionName)'
+            rootFolder: $(codeDirectory)
+            localizationRoot: $(codeDirectory)
+            outputPath: $(Build.ArtifactStagingDirectory)/Extension
+            publisherId: $(publisherId)
+            extensionId: $(extensionId)
+            extensionName: $(extensionName)
             updateTasksVersion: true
             updateTasksId: true
             extensionVisibility: 'private'
@@ -86,8 +89,45 @@ stages:
           inputs:
             buildType: 'current'
             artifactName: $(artifactName)
-            targetPath: '$(Pipeline.Workspace)'
+            targetPath: '$(Pipeline.Workspace)/Extension'
+
         - task: TfxInstaller@3
           inputs:
             version: 'v0.9.x'
-        
+
+        - task: PublishAzureDevOpsExtension@3
+          displayName: Publish Extension to marketplace
+          inputs:
+            connectTo: 'VsTeam'
+            connectedServiceName: $(marketplaceServiceConnectionName)
+            fileType: 'vsix'
+            vsixFile: '$(Pipeline.Workspace)/Extension/*.vsix'
+            publisherId: $(publisherId)
+            extensionId: $(extensionId)
+            extensionName: $(extensionName)
+            extensionVersion: '$(Build.BuildNumber)'
+            updateTasksVersionType: 'minor'
+            extensionVisibility: 'public'
+            extensionPricing: 'free'
+            shareWith: $(shareWithOrganization)
+
+  - stage: Install
+    displayName: Install Extension in ORG
+    dependsOn: [ Release ]
+    condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
+    jobs:
+      - job: Install
+        displayName: Install Extension in Org
+        steps:
+        - task: TfxInstaller@3
+          inputs:
+            version: 'v0.9.x'
+
+        - task: InstallAzureDevOpsExtension@3
+          displayName: Install Extension from marketplace
+          inputs:
+            connectTo: 'VsTeam'
+            connectedServiceName: $(marketplaceServiceConnectionName)
+            publisherId: $(publisherId)
+            extensionId: $(extensionId)
+            accounts: $(shareWithOrganization.URLs)
