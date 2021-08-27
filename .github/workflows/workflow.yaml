@@ -65,6 +65,7 @@ jobs:
       - name: Install dependencies
         run: |
           make ni
+          cd src && npm run restore
           npm install -g tfx-cli
 
       - name: Remove test scripts
