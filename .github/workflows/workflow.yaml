@@ -107,6 +107,5 @@ jobs:
       - name: Publish to marketplace
         if: github.ref == 'refs/heads/master'
         run: |
-          # store the name of the binary in the artifact directory
           vsixFileName=`ls ${{steps.download.outputs.download-path}} | grep *.vsix`
           tfx extension publish --vsix ${{steps.download.outputs.download-path}}/$vsixFileName --token ${{ secrets.AZURE_DEVOPS_PAT_TOKEN }} --share-with ${{ env.azDoOrganizationName }}
