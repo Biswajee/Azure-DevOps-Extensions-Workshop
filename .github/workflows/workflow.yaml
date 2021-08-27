@@ -23,6 +23,12 @@ on:
 env:
   # the name of the azure devops organization where the extension will be shared
   azDoOrganizationName: TCSTechCommWorkshop,biswajitr
+  # the patch version of the task will be updated according to githun pipeline run number
+  # this is a small hack to update task versions which is nicely handled by the Azure DevOps
+  # Extension: https://marketplace.visualstudio.com/items?itemName=ms-devlabs.vsts-developer-tools-build-tasks
+  patchVersion: ${{ github.run_number }}
+  # the name of the vsix file that will be produced: <publisherId.extensionName-version>.vsix
+  vsixFile: Biswajitr.azure-devops-extension-demo-0.0.${{ github.run_number }}.vsix
 
 jobs:
   test:
@@ -69,6 +75,13 @@ jobs:
       - name: Remove test scripts
         run: rm -fv ${{github.workspace}}/**/*.spec.ts
 
+      - uses: cschleiden/replace-tokens@v1
+        name: Replace tokens task
+        with:
+          tokenPrefix: '__'
+          tokenSuffix: '__'
+          files: '["**/*.json"]'
+
       - name: Build project
         run: cd src && npm run package
       
@@ -106,7 +119,4 @@ jobs:
 
       - name: Publish to marketplace
         if: github.ref == 'refs/heads/master'
-        run: |
-          vsixFileName=`ls ${{steps.download.outputs.download-path}} | grep *.vsix`
-          echo $vsixFileName
-          tfx extension publish --vsix ${{steps.download.outputs.download-path}}/$vsixFileName --token ${{ secrets.AZURE_DEVOPS_PAT_TOKEN }} --share-with ${{ env.azDoOrganizationName }}
+        run: tfx extension publish --vsix ${{steps.download.outputs.download-path}}/${{ env.vsixFile }} --token ${{ secrets.AZURE_DEVOPS_PAT_TOKEN }} --share-with ${{ env.azDoOrganizationName }}
