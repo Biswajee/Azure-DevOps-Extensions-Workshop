@@ -23,8 +23,6 @@ on:
 env:
   # the name of the azure devops organization where the extension will be shared
   azDoOrganizationName: TCSTechCommWorkshop,biswajitr
-  # the name of the vsix file that will be produced: <publisherId.extensionName-version>.vsix
-  vsixFile: Biswajitr.azure-devops-extension-demo-0.0.2.vsix
 
 jobs:
   test:
@@ -96,10 +94,8 @@ jobs:
         with:
           node-version: '12.x'
 
-      - name: Install dependencies
-        run: |
-          make ni
-          npm install -g tfx-cli
+      - name: Install TFX CLI
+        run: npm install -g tfx-cli
 
       - name: Download extension artifact
         uses: actions/download-artifact@v2
@@ -111,5 +107,6 @@ jobs:
       - name: Publish to marketplace
         if: github.ref == 'refs/heads/master'
         run: |
-          make c
-          cd src && tfx extension publish --vsix ${{steps.download.outputs.download-path}}/${{ env.vsixFile }} --token ${{ secrets.AZURE_DEVOPS_PAT_TOKEN }} --share-with ${{ env.azDoOrganizationName }}
+          # store the name of the binary in the artifact directory
+          vsixFileName=`ls ${{steps.download.outputs.download-path}} | grep *.vsix`
+          tfx extension publish --vsix ${{steps.download.outputs.download-path}}/$vsixFileName --token ${{ secrets.AZURE_DEVOPS_PAT_TOKEN }} --share-with ${{ env.azDoOrganizationName }}
