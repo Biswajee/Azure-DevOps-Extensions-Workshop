@@ -111,23 +111,23 @@ stages:
             extensionPricing: 'free'
             shareWith: $(shareWithOrganization)
 
-  - stage: Install
-    displayName: Install Extension in ORG
-    dependsOn: [ Release ]
-    condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
-    jobs:
-      - job: Install
-        displayName: Install Extension in Org
-        steps:
-        - task: TfxInstaller@3
-          inputs:
-            version: 'v0.9.x'
+    - stage: Install
+      displayName: Install Extension in ORG
+      dependsOn: [ Release ]
+      condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
+      jobs:
+        - job: Install
+          displayName: Install Extension in Org
+          steps:
+          - task: TfxInstaller@3
+            inputs:
+              version: 'v0.9.x'
 
-        - task: InstallAzureDevOpsExtension@3
-          displayName: Install Extension from marketplace
-          inputs:
-            connectTo: 'VsTeam'
-            connectedServiceName: $(marketplaceServiceConnectionName)
-            publisherId: $(publisherId)
-            extensionId: $(extensionId)
-            accounts: $(shareWithOrganization.URLs)
+          - task: InstallAzureDevOpsExtension@3
+            displayName: Install Extension from marketplace
+            inputs:
+              connectTo: 'VsTeam'
+              connectedServiceName: $(marketplaceServiceConnectionName)
+              publisherId: $(publisherId)
+              extensionId: $(extensionId)
+              accounts: $(shareWithOrganization.URLs)
