@@ -52,7 +52,7 @@ jobs:
         with:
           tokenPrefix: '__'
           tokenSuffix: '__'
-          files: ["src/**/package.json", "src/**/task.json", "src/vss-extension.json", "src/package.json"]
+          files: '["src/**/package.json", "src/**/task.json", "src/vss-extension.json", "src/package.json"]'
 
       - name: Install dependencies
         run: make ni
@@ -87,7 +87,7 @@ jobs:
         with:
           tokenPrefix: '__'
           tokenSuffix: '__'
-          files: ["src/**/package.json", "src/**/task.json", "src/vss-extension.json", "src/package.json"]
+          files: '["src/**/package.json", "src/**/task.json", "src/vss-extension.json", "src/package.json"]'
 
       - name: Build project
         run: cd src && npm run package
