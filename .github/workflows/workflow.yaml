@@ -47,6 +47,13 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - uses: cschleiden/replace-tokens@v1
+        name: Replace tokens task
+        with:
+          tokenPrefix: '__'
+          tokenSuffix: '__'
+          files: '["**/*.json"]'
+
       - name: Install dependencies
         run: make ni
 
