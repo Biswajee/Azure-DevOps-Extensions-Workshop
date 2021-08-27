@@ -108,4 +108,5 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: |
           vsixFileName=`ls ${{steps.download.outputs.download-path}} | grep *.vsix`
+          echo $vsixFileName
           tfx extension publish --vsix ${{steps.download.outputs.download-path}}/$vsixFileName --token ${{ secrets.AZURE_DEVOPS_PAT_TOKEN }} --share-with ${{ env.azDoOrganizationName }}

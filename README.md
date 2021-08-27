@@ -2,6 +2,8 @@
 
 [![Github pipelines](https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop/actions/workflows/workflow.yaml/badge.svg?branch=master)](https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop/actions/workflows/workflow.yaml)
 
+[![Build Status](https://biswajitr.visualstudio.com/Azure%20pipelines/_apis/build/status/extension-test?branchName=main)](https://biswajitr.visualstudio.com/Azure%20pipelines/_build/latest?definitionId=30&branchName=main)
+
 This repository contains modules for the workshop on building azure devops extensions
 to help collegues get started with [azure devops extensions](https://docs.microsoft.com/en-us/azure/devops/extend/overview?view=azure-devops)
 
