@@ -73,6 +73,13 @@ jobs:
         with:
           node-version: '12.x'
 
+      - uses: cschleiden/replace-tokens@v1
+        name: Replace tokens task
+        with:
+          tokenPrefix: '__'
+          tokenSuffix: '__'
+          files: '["src/**/package.json", "src/**/task.json", "src/vss-extension.json", "src/package.json"]'
+
       - name: Install dependencies
         run: |
           make ni
@@ -81,13 +88,6 @@ jobs:
 
       - name: Remove test scripts
         run: rm -fv ${{github.workspace}}/**/*.spec.ts
-
-      - uses: cschleiden/replace-tokens@v1
-        name: Replace tokens task
-        with:
-          tokenPrefix: '__'
-          tokenSuffix: '__'
-          files: '["src/**/package.json", "src/**/task.json", "src/vss-extension.json", "src/package.json"]'
 
       - name: Build project
         run: cd src && npm run package
