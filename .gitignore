@@ -11,7 +11,5 @@
 *.js
 *.js.map
 
-# Build directory
-src/build/
 .nyc_output/
 coverage/
