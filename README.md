@@ -96,7 +96,7 @@ _Please note the name of the service connection after creating._
 
 ### Create the publisher
 
-1. Go to the [Publish your extension](https://marketplace.visualstudio.com/manage/createpublisher?managePageRedirect=true) page and create a publisher. Please note the **publisher ID** after creating.
+1. Go to the [publish your extension](https://marketplace.visualstudio.com/manage/createpublisher?managePageRedirect=true) page and create a publisher. Please note the **publisher ID** after creating.
 
 _(Any details other than the name of the publisher and the publsher id are optional.)_
 
@@ -108,12 +108,28 @@ Please update the values in the variable section of the pipeline (Line 19 to 29)
 
 ```yaml
 variables:
-  # Extension information
+  # the publisher id you've created
   publisherId: <YOUR-PUBLISHER-ID>
   # the value of url after https://dev.azure.com/<YOUR-ORGANIZATION-NAME>
   shareWithOrganization: <YOUR-ORGANIZATION-NAME>
   # example of organization url: https://dev.azure.com/biswajitr
   shareWithOrganization.URLs: <YOUR-ORGANIZATION-URL> 
+  # the name of the marketplace service connection that you've created
   marketplaceServiceConnectionName: <YOUR-MARKETPLACE-SERVICE-CONNECTION>
 ```
 
+Now, we're ready to create our first pipeline 🎉
+
+1. Click the pipelines icon in the azure devops platform.
+
+2. Click on `[ New Pipeline ]` button.
+
+3. Select following responses when prompted:
+  - Where is your code: Azure Repos Git
+  - Select a repository: <YOUR-REPOSITORY>
+  - Configure your pipeline: Existing Azure Pipelines YAML file
+  - Enter pipeline path as: /az-build-and-release-pipeline.yaml
+
+Click continue to setup your pipeline.
+
+Review your pipeline YAML and hit run to execute the pipeline.
