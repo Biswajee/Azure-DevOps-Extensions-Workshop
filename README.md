@@ -11,13 +11,15 @@ to help collegues get started with [azure devops extensions](https://docs.micros
 <details>
 <summary><b>Table of Contents</b> <I>(click to open)</I></summary>
 
-- [Azure DevOps Extensions Workshop](#azure-devops-extensions-workshop)
-  - [Prerequisites](#prerequisites)
-  - [Preparing the extension](#preparing-the-extension)
-    - [Setup the workspace](#setup-the-workspace)
-    - [Setup the marketplace service connection](#setup-the-marketplace-service-connection)
-    - [Create the publisher](#create-the-publisher)
-    - [Setup the Azure DevOps Pipeline](#setup-the-azure-devops-pipeline)
+- [Prerequisites](#prerequisites)
+- [Preparing the extension](#preparing-the-extension)
+  - [Setup the workspace](#setup-the-workspace)
+  - [Setup the marketplace service connection](#setup-the-marketplace-service-connection)
+  - [Create the publisher](#create-the-publisher)
+  - [Setup the Azure DevOps Pipeline](#setup-the-azure-devops-pipeline)
+- [Using the extension](#using-the-extension)
+  - [Install the extension](install-the-extension)
+  - [Setup the consumer pipeline](#setup-the-consumer-pipeline)
 
 </details>
 
@@ -113,6 +115,8 @@ variables:
   # the publisher id you've created
   publisherId: <YOUR-PUBLISHER-ID>
   # the value of url after https://dev.azure.com/<YOUR-ORGANIZATION-NAME>
+  # this value will be used to share the produced extension with the organization
+  # multiple values can be provided as shown: organization1,organization2
   shareWithOrganization: <YOUR-ORGANIZATION-NAME>
   # example of organization url: https://dev.azure.com/biswajitr
   shareWithOrganization.URLs: <YOUR-ORGANIZATION-URL> 
@@ -127,11 +131,28 @@ Now, we're ready to create our first pipeline 🎉
 2. Click on `[ New Pipeline ]` button.
 
 3. Select following responses when prompted:
-  - Where is your code: Azure Repos Git
-  - Select a repository: <YOUR-REPOSITORY>
-  - Configure your pipeline: Existing Azure Pipelines YAML file
-  - Enter pipeline path as: /az-build-and-release-pipeline.yaml
 
-Click continue to setup your pipeline.
+    - Where is your code: Azure Repos Git
 
-Review your pipeline YAML and hit run to execute the pipeline.
+    - Select a repository: <YOUR-REPOSITORY>
+
+    - Configure your pipeline: Existing Azure Pipelines YAML file
+
+    - Enter pipeline path as: `/az-build-and-release-pipeline.yaml`
+
+Click on **continue** to setup your pipeline.
+
+Review your pipeline YAML and hit **run** to execute the pipeline.
+
+## Using the extension
+
+Now that your build and release pipelines executed successfully, we can test our extension
+using another pipeline. Before, we can do that you must ensure that the extension is shared
+with the organization where you're trying to use.
+
+### Install the extension
+
+
+
+### Setup the pipeline
+
