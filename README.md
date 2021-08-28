@@ -6,17 +6,18 @@
 This repository contains modules for the workshop on building azure devops extensions
 to help collegues get started with [azure devops extensions](https://docs.microsoft.com/en-us/azure/devops/extend/overview?view=azure-devops)
 
+<details>
+<summary><b>Table of Contents</b> <I>(click to open)</I></summary>
 
-| :-----------------------------------------------------------------------: |
-| Contents |
-| - [Azure DevOps Extensions Workshop](#azure-devops-extensions-workshop) |
-|   - [Prerequisites](#prerequisites) |
-|   - [Steps](#steps) |
-|     - [Setup the workspace](#setup-the-workspace) |
-|     - [Setup the marketplace service connection](#setup-the-marketplace-service-connection) |
-|     - [Create the publisher](#create-the-publisher) |
-|     - [Setup the Azure DevOps Pipeline](#setup-the-azure-devops-pipeline) |
-| :-----------------------------------------------------------------------: |
+- [Azure DevOps Extensions Workshop](#azure-devops-extensions-workshop)
+  - [Prerequisites](#prerequisites)
+  - [Steps](#steps)
+    - [Setup the workspace](#setup-the-workspace)
+    - [Setup the marketplace service connection](#setup-the-marketplace-service-connection)
+    - [Create the publisher](#create-the-publisher)
+    - [Setup the Azure DevOps Pipeline](#setup-the-azure-devops-pipeline)
+
+</details>
 
 ## Prerequisites
 
