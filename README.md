@@ -6,6 +6,18 @@
 This repository contains modules for the workshop on building azure devops extensions
 to help collegues get started with [azure devops extensions](https://docs.microsoft.com/en-us/azure/devops/extend/overview?view=azure-devops)
 
+
+| :-----------------------------------------------------------------------: |
+| Contents |
+| - [Azure DevOps Extensions Workshop](#azure-devops-extensions-workshop) |
+|   - [Prerequisites](#prerequisites) |
+|   - [Steps](#steps) |
+|     - [Setup the workspace](#setup-the-workspace) |
+|     - [Setup the marketplace service connection](#setup-the-marketplace-service-connection) |
+|     - [Create the publisher](#create-the-publisher) |
+|     - [Setup the Azure DevOps Pipeline](#setup-the-azure-devops-pipeline) |
+| :-----------------------------------------------------------------------: |
+
 ## Prerequisites
 
 The workshop assumes that you know and have access to the following resources:
@@ -18,7 +30,7 @@ The workshop assumes that you know and have access to the following resources:
 
 ## Steps
 
-### Setting up workspace
+### Setup the workspace
 
 1. Sign in to [Azure DevOps](https://dev.azure.com/) using your personal microsoft account.
 
@@ -78,4 +90,29 @@ Horray! You've completed the first subtask 🎉🎉
 6. Provide the name of the service connection and an optional description.
 
 7. Make sure the **Grant access permission to all pipelines** is checked ✅.
+
+_Please note the name of the service connection after creating._
+
+### Create the publisher
+
+1. Go to the [Publish your extension](https://marketplace.visualstudio.com/manage/createpublisher?managePageRedirect=true) page and create a publisher. Please note the **publisher ID** after creating.
+
+_(Any details other than the name of the publisher and the publsher id are optional.)_
+
+### Setup the Azure DevOps Pipeline
+
+The Azure DevOps pipeline is located at the root of the project
+[here](./az-build-and-release-pipeline.yaml).
+Please update the values in the variable section of the pipeline (Line 19 to 29) as under:
+
+```yaml
+variables:
+  # Extension information
+  publisherId: <YOUR-PUBLISHER-ID>
+  # the value of url after https://dev.azure.com/<YOUR-ORGANIZATION-NAME>
+  shareWithOrganization: <YOUR-ORGANIZATION-NAME>
+  # example of organization url: https://dev.azure.com/biswajitr
+  shareWithOrganization.URLs: <YOUR-ORGANIZATION-URL> 
+  marketplaceServiceConnectionName: <YOUR-MARKETPLACE-SERVICE-CONNECTION>
+```
 
