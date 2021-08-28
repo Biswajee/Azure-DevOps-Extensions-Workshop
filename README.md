@@ -1,7 +1,9 @@
 # Azure DevOps Extensions Workshop
 
-[![Github pipelines](https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop/actions/workflows/workflow.yaml/badge.svg?branch=master)](https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop/actions/workflows/workflow.yaml)
-[![Build Status](https://biswajitr.visualstudio.com/Azure%20pipelines/_apis/build/status/extension-test?branchName=main)](https://biswajitr.visualstudio.com/Azure%20pipelines/_build/latest?definitionId=30&branchName=main)
+| :--: | :--: |
+| Extension build and release pipeline | [![Github pipelines](https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop/actions/workflows/workflow.yaml/badge.svg?branch=master)](https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop/actions/workflows/workflow.yaml) |
+| Extension consuming pipeline | [![Build Status](https://biswajitr.visualstudio.com/Azure%20pipelines/_apis/build/status/extension-test?branchName=main)](https://biswajitr.visualstudio.com/Azure%20pipelines/_build/latest?definitionId=30&branchName=main) |
+| :--: | :--: |
 
 This repository contains modules for the workshop on building azure devops extensions
 to help collegues get started with [azure devops extensions](https://docs.microsoft.com/en-us/azure/devops/extend/overview?view=azure-devops)
@@ -11,7 +13,7 @@ to help collegues get started with [azure devops extensions](https://docs.micros
 
 - [Azure DevOps Extensions Workshop](#azure-devops-extensions-workshop)
   - [Prerequisites](#prerequisites)
-  - [Steps](#steps)
+  - [Preparing the extension](#preparing-the-extension)
     - [Setup the workspace](#setup-the-workspace)
     - [Setup the marketplace service connection](#setup-the-marketplace-service-connection)
     - [Create the publisher](#create-the-publisher)
@@ -29,7 +31,7 @@ The workshop assumes that you know and have access to the following resources:
 - [x] GNU Make
 - [x] [Azure DevOps Account](https://azure.microsoft.com/en-us/services/devops/)
 
-## Steps
+## Preparing the extension
 
 ### Setup the workspace
 
