@@ -105,9 +105,8 @@ stages:
             publisherId: $(publisherId)
             extensionId: $(extensionId)
             extensionName: $(extensionName)
-            extensionVersion: '$(Build.BuildNumber)'
             updateTasksVersionType: 'minor'
-            extensionVisibility: 'public'
+            extensionVisibility: 'private'
             extensionPricing: 'free'
             shareWith: $(shareWithOrganization)
 
