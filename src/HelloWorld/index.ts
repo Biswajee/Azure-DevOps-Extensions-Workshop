@@ -12,7 +12,7 @@ const run = async (): Promise<void> => {
       'Demo extension executed successfully',
     );
     return;
-  } catch (err) {
+  } catch (err: any) {
     tl.setResult(tl.TaskResult.Failed, err.message);
   }
 };

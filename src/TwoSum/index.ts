@@ -21,7 +21,7 @@ const run = async (): Promise<void> => {
 
     tl.setResult(tl.TaskResult.Succeeded, 'Demo task executed successfully');
     return;
-  } catch (err) {
+  } catch (err: any) {
     tl.setResult(tl.TaskResult.Failed, err.message);
   }
 };
