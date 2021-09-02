@@ -59,7 +59,6 @@ describe('index', () => {
 });
 
 describe('run', () => {
-
   beforeEach(() => {
     sandbox = sinon.createSandbox();
 

@@ -47,7 +47,7 @@ stages:
         steps:
         - task: NodeTool@0
           inputs:
-            versionSpec: '10.x'
+            versionSpec: '12.x'
 
         - task: TfxInstaller@3
           inputs:
@@ -64,10 +64,21 @@ stages:
             workingDir: $(codeDirectory)
             customCommand: 'run restore'
 
+        - bash: rm -fv $(codeDirectory)/**/*.spec.ts
+          displayName: Remove typescript test files
+          workingDirectory: $(codeDirectory)
+
+        - bash: tsc
+          displayName: Run tsc in $(codeDirectory)
+          workingDirectory: $(codeDirectory)
+
+        - bash: rm -fv $(codeDirectory)/**/*.ts
+          displayName: Remove typescript files
+          workingDirectory: $(codeDirectory)
+
         - task: PackageAzureDevOpsExtension@3
           inputs:
             rootFolder: '$(codeDirectory)'
-            localizationRoot: '$(codeDirectory)'
             outputPath: '$(Build.ArtifactStagingDirectory)/Extension'
             publisherId: '$(publisherId)'
             extensionId: '$(extensionId)'
@@ -76,6 +87,7 @@ stages:
             updateTasksId: true
             extensionVisibility: 'private'
             extensionPricing: 'free'
+
         - task: PublishPipelineArtifact@1
           displayName: Publish artifact $(artifactName)
           inputs:
