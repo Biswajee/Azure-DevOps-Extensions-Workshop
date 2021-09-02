@@ -3,7 +3,7 @@ name: azure-devops-extension-workshop
 on:
   push:
     branches: 
-      - master
+      # - master
       - develop
       # match an pushes on feature/* and feature/<any sub branch>/*
       - 'feature/**'

@@ -1,4 +1,5 @@
 import * as tl from 'azure-pipelines-task-lib';
+import * as path from 'path';
 
 export const inputs = () => ({
   // Get the first number as a task input
@@ -8,7 +9,7 @@ export const inputs = () => ({
 });
 
 const run = async (): Promise<void> => {
-
+  tl.setResourcePath(path.join(__dirname, 'task.json'));
   try {
     // Object destructuring property to help
     const { firstNumber, secondNumber } = inputs();

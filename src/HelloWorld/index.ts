@@ -1,6 +1,8 @@
 import * as tl from 'azure-pipelines-task-lib';
+import * as path from 'path';
 
 const run = async (): Promise<void> => {
+  tl.setResourcePath(path.join(__dirname, 'task.json'));
   try {
     // The simple line below prints hello world on pipeline
     console.log('Hello world!');
