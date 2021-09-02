@@ -1,6 +1,7 @@
 import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
 import * as sinon from 'sinon';
+import * as index from './index';
 import run from './index';
 import chaiAsPromised from 'chai-as-promised';
 
@@ -11,9 +12,11 @@ chai.use(chaiAsPromised);
 let sandbox: sinon.SinonSandbox;
 
 describe('index', () => {
+  let inputsMock: any;
   beforeEach(() => {
     sandbox = sinon.createSandbox();
 
+    inputsMock = sandbox.stub(index, 'inputs');
     sandbox.stub(console, 'log');
   });
 
@@ -56,8 +59,14 @@ describe('index', () => {
 
   testData.forEach(({ firstNumber, secondNumber, expectedSum }) => {
     it(`should call console.log() with firstNumber: ${firstNumber}, secondNumber: ${secondNumber} and ${expectedSum}`, async() => {
+      // Arrange
+      inputsMock.returns({
+        firstNumber,
+        secondNumber
+      });
+
       // Act
-      await run();
+      run();
 
       // Assert
       expect(console.log).to.be.calledWith(`The sum of ${firstNumber} and ${secondNumber} is ${expectedSum}`);

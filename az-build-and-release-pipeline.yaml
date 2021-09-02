@@ -29,15 +29,15 @@ variables:
   marketplaceServiceConnectionName: "Extension-Marketplace"
 
 stages:
-    - stage: Test
-      displayName: Test
-      jobs:
-        - job: Test
-          steps:
-            - bash: make ni
-              displayName: Install Dependencies
-            - bash: make t
-              displayName: Run tests
+    # - stage: Test
+    #   displayName: Test
+    #   jobs:
+    #     - job: Test
+    #       steps:
+    #         - bash: make ni
+    #           displayName: Install Dependencies
+    #         - bash: make t
+    #           displayName: Run tests
 
     - stage: Package
       displayName: Package
