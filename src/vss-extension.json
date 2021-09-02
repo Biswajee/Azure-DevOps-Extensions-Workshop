@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "id": "azure-devops-extension-demo",
   "publisher": "Biswajitr",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "name": "Azure Devops Extension Demo",
   "description": "Demo extension to print message using an azure pipeline task",
   "public": false,
