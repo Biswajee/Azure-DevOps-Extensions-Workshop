@@ -29,18 +29,19 @@ variables:
   marketplaceServiceConnectionName: "Extension-Marketplace"
 
 stages:
-    # - stage: Test
-    #   displayName: Test
-    #   jobs:
-    #     - job: Test
-    #       steps:
-    #         - bash: make ni
-    #           displayName: Install Dependencies
-    #         - bash: make t
-    #           displayName: Run tests
+    - stage: Test
+      displayName: Test
+      jobs:
+        - job: Test
+          steps:
+            - bash: make ni
+              displayName: Install Dependencies
+            - bash: make t
+              displayName: Run tests
 
     - stage: Package
       displayName: Package
+      dependsOn: [ Test ]
       jobs:
       - job: Package
         steps:
@@ -78,7 +79,7 @@ stages:
 
     - stage: Release
       displayName: Production
-      dependsOn: [ Package ]
+      dependsOn: [ Test, Package ]
       condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
       jobs:
       - job: Release

@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "id": "azure-devops-extension-demo",
   "publisher": "Biswajitr",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "name": "Azure Devops Extension Demo",
   "description": "Demo extension to print message using an azure pipeline task",
   "public": false,
@@ -20,7 +20,13 @@
       "path": "overview.md"
     }
   },
-  "tags": ["Demo", "Hello-World", "TwoSum", "Workshop", "Azure DevOps Extension Workshop"],
+  "tags": [
+    "Demo",
+    "Hello-World",
+    "TwoSum",
+    "Workshop",
+    "Azure DevOps Extension Workshop"
+  ],
   "links": {
     "home": {
       "uri": "https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop"

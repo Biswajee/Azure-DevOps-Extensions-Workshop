@@ -1,8 +1,8 @@
 import chai, { expect } from 'chai';
 import sinonChai from 'sinon-chai';
 import * as sinon from 'sinon';
-import run from './index';
 import chaiAsPromised from 'chai-as-promised';
+import run from './index';
 
 chai.use(sinonChai);
 chai.use(chaiAsPromised);
@@ -21,11 +21,11 @@ describe('index', () => {
     sandbox.restore();
   });
 
-  it(`should call console.log() with expected parameter`, async() => {
+  it('should call console.log() with expected parameter', async () => {
     // Act
     await run();
 
     // Assert
-    expect(console.log).to.be.calledWith("Hello world!");
+    expect(console.log).to.be.calledWith('Hello world!');
   });
 });

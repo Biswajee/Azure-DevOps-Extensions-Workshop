@@ -10,7 +10,7 @@
   "license": "MIT",
   "author": "Biswajit Roy",
   "config": {
-    "tfx_args": "--output-path ./out --manifest-globs vss-extension.json --no-prompt --json",
+    "tfx_args": "--output-path ./out --manifest-globs vss-extension.json --no-prompt --json --rev-version",
     "mocha_args": "--timeout=3000 --require ts-node/register './{,!(node_modules)/**}/*.spec.ts'"
   },
   "scripts": {

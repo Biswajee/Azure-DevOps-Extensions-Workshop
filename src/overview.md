@@ -13,9 +13,10 @@ We can add small documentation on how to use the tasks as below:
 This task displays a `Hello World!` message in the pipeline!
 
 Usage:
+
 ```yaml
 steps:
-- task: HelloWorld@0
+  - task: HelloWorld@0
 ```
 
 ## TwoSum
@@ -23,10 +24,11 @@ steps:
 This task takes in two numbers as task parameter and outputs sum of two numbers.
 
 Usage:
+
 ```yaml
 steps:
-- task: TwoSum@0
-  inputs:
-    first_number: 3
-    second_number: 7
+  - task: TwoSum@0
+    inputs:
+      first_number: 3
+      second_number: 7
 ```

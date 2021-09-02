@@ -8,15 +8,15 @@
   "category": "Utility",
   "author": "Biswajit Roy",
   "version": {
-      "Major": 0,
-      "Minor": 0,
-      "Patch": 0
+    "Major": 0,
+    "Minor": 0,
+    "Patch": 0
   },
   "groups": [],
   "inputs": [],
   "execution": {
-      "Node10": {
-          "target": "index.js"
-      }
+    "Node10": {
+      "target": "index.js"
+    }
   }
 }

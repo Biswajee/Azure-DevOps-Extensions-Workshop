@@ -8,7 +8,7 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "target": "es6",
-    "rootDir": "src/",
+    "rootDir": ".",
     "lib": ["es6", "es2015", "dom"],
     "types": ["mocha", "node"],
     "moduleResolution": "node"

@@ -8,21 +8,22 @@ export const inputs = () => ({
 });
 
 const run = async (): Promise<void> => {
+
   try {
     // Object destructuring property to help
     const { firstNumber, secondNumber } = inputs();
 
     // Add your logic here...
-    // Add the firstNumber and secondNumber variable and store it in the sum variable. 
-    const sum = 0;
+    // Add the firstNumber and secondNumber variable and store it in the sum variable.
+    const sum: number = firstNumber + secondNumber;
     console.log(`The sum of ${firstNumber} and ${secondNumber} is ${sum}`);
-    
+
     tl.setResult(tl.TaskResult.Succeeded, 'Demo task executed successfully');
     return;
   } catch (err) {
     tl.setResult(tl.TaskResult.Failed, err.message);
   }
-}
+};
 
 export default run;
 
