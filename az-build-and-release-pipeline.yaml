@@ -78,7 +78,7 @@ stages:
 
     - stage: Release
       displayName: Production
-      dependsOn: [ Test, Package ]
+      dependsOn: [ Package ]
       condition: and(succeeded(), eq(variables['Build.SourceBranchName'], 'master'))
       jobs:
       - job: Release
