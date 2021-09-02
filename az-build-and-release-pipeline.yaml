@@ -48,18 +48,22 @@ stages:
         - task: NodeTool@0
           inputs:
             versionSpec: '10.x'
+
         - task: TfxInstaller@3
           inputs:
             version: 'v0.9.x'
+
         - task: Npm@1
           inputs:
             command: 'install'
             workingDir: $(codeDirectory)
+
         - task: Npm@1
           inputs:
             command: 'custom'
             workingDir: $(codeDirectory)
             customCommand: 'run restore'
+
         - task: PackageAzureDevOpsExtension@3
           inputs:
             rootFolder: '$(codeDirectory)'
@@ -105,10 +109,20 @@ stages:
             publisherId: $(publisherId)
             extensionId: $(extensionId)
             extensionName: $(extensionName)
+            extensionVersion: '1.0.$(Build.BuildNumber)'
+            updateTasksVersion: true
             updateTasksVersionType: 'minor'
             extensionVisibility: 'private'
             extensionPricing: 'free'
-            shareWith: $(shareWithOrganization)
+
+        - task: ShareAzureDevOpsExtension@3
+          inputs:
+            connectTo: 'VsTeam'
+            connectedServiceName: 'Extension-Marketplace'
+            method: 'id'
+            publisherId: '$(publisherId)'
+            extensionId: '$(extensionId)'
+            accounts: '$(shareWithOrganization)'
 
     - stage: Install
       displayName: Install Extension in ORG
