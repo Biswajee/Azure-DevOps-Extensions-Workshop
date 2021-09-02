@@ -24,8 +24,8 @@ variables:
   publisherId: "Biswajitr"
   extensionName: "Global Extension"
   artifactName: "Global-Extension"
-  shareWithOrganization: "Biswajitr"
-  shareWithOrganization.URLs: "https://dev.azure.com/biswajitr"
+  shareWithOrganization: ["Biswajitr", "TCSTechCommWorkshop"]
+  shareWithOrganization.URLs: ["https://dev.azure.com/biswajitr", "https://dev.azure.com/TCSTechCommWorkshop"]
   marketplaceServiceConnectionName: "Extension-Marketplace"
 
 stages:
@@ -62,15 +62,16 @@ stages:
             customCommand: 'run restore'
         - task: PackageAzureDevOpsExtension@3
           inputs:
-            rootFolder: $(codeDirectory)
-            localizationRoot: $(codeDirectory)
-            outputPath: $(Build.ArtifactStagingDirectory)/Extension
-            publisherId: $(publisherId)
-            extensionId: $(extensionId)
-            extensionName: $(extensionName)
+            rootFolder: '$(codeDirectory)'
+            localizationRoot: '$(codeDirectory)'
+            outputPath: '$(Build.ArtifactStagingDirectory)/Extension'
+            publisherId: '$(publisherId)'
+            extensionId: '$(extensionId)'
+            extensionName: '$(extensionName)'
             updateTasksVersion: true
             updateTasksId: true
             extensionVisibility: 'private'
+            extensionPricing: 'free'
         - task: PublishPipelineArtifact@1
           displayName: Publish artifact $(artifactName)
           inputs:
