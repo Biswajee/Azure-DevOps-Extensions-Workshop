@@ -118,7 +118,7 @@ stages:
         - task: ShareAzureDevOpsExtension@3
           inputs:
             connectTo: 'VsTeam'
-            connectedServiceName: 'Extension-Marketplace'
+            connectedServiceName: $(marketplaceServiceConnectionName)
             method: 'id'
             publisherId: '$(publisherId)'
             extensionId: '$(extensionId)'
