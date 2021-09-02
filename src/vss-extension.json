@@ -2,7 +2,7 @@
   "manifestVersion": 1,
   "id": "azure-devops-extension-demo",
   "publisher": "Biswajitr",
-  "version": "0.0.__patchVersion__",
+  "version": "0.0.0",
   "name": "Azure Devops Extension Demo",
   "description": "Demo extension to print message using an azure pipeline task",
   "public": false,
@@ -20,7 +20,7 @@
       "path": "overview.md"
     }
   },
-  "tags": ["Demo", "Hello-World", "Workshop, Azure DevOps Extension Workshop"],
+  "tags": ["Demo", "Hello-World", "TwoSum", "Workshop", "Azure DevOps Extension Workshop"],
   "links": {
     "home": {
       "uri": "https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop"
@@ -45,10 +45,22 @@
       "properties": {
         "name": "HelloWorld"
       }
-    }],
+    },
+    {
+      "id": "TwoSum",
+      "type": "ms.vss-distributed-task.task",
+      "targets": ["ms.vss-distributed-task.tasks"],
+      "properties": {
+        "name": "TwoSum"
+      }
+    }
+  ],
   "files": [
     {
       "path": "./HelloWorld"
+    },
+    {
+      "path": "./TwoSum"
     }
   ],
   "scopes": ["vso.serviceendpoint_query"]

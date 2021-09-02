@@ -1,0 +1,38 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+  "id": "0f622763-7cba-4de9-b684-05a587219c9c",
+  "name": "TwoSum",
+  "friendlyName": "TwoSum",
+  "description": "Adds two numbers provided by the user",
+  "helpMarkDown": "Demo task to add two numbers provided by the user",
+  "category": "Utility",
+  "author": "Biswajit Roy",
+  "version": {
+      "Major": 0,
+      "Minor": 0,
+      "Patch": 0
+  },
+  "groups": [],
+  "inputs": [{
+        "type": "string",
+        "name": "firstNumber",
+        "label": "Enter the first number",
+        "defaultValue": "0",
+        "required": true,
+        "helpMarkDown": "Enter the first operand for the addition operation"
+    },
+    {
+        "type": "string",
+        "name": "secondNumber",
+        "label": "Enter the second number",
+        "defaultValue": "0",
+        "required": true,
+        "helpMarkDown": "Enter the second operand for the addition operation"
+    }
+  ],
+  "execution": {
+      "Node10": {
+          "target": "index.js"
+      }
+  }
+}
