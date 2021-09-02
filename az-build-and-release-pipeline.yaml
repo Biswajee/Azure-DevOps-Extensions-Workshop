@@ -24,8 +24,8 @@ variables:
   publisherId: "Biswajitr"
   extensionName: "Global Extension"
   artifactName: "Global-Extension"
-  shareWithOrganization: ["Biswajitr", "TCSTechCommWorkshop"]
-  shareWithOrganization.URLs: ["https://dev.azure.com/biswajitr", "https://dev.azure.com/TCSTechCommWorkshop"]
+  shareWithOrganization: "Biswajitr,TCSTechCommWorkshop"
+  shareWithOrganization.URLs: "https://dev.azure.com/biswajitr,https://dev.azure.com/TCSTechCommWorkshop"
   marketplaceServiceConnectionName: "Extension-Marketplace"
 
 stages:
