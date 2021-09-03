@@ -2,8 +2,8 @@
 
 | Pipelines | Status |
 | :--: | :--: |
-| Extension build and release | [![Github pipelines](https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop/actions/workflows/workflow.yaml/badge.svg?branch=master)](https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop/actions/workflows/workflow.yaml) |
-| Extension consumer | [![Build Status](https://biswajitr.visualstudio.com/Azure%20pipelines/_apis/build/status/extension-test?branchName=main)](https://biswajitr.visualstudio.com/Azure%20pipelines/_build/latest?definitionId=30&branchName=main) |
+| Extension build and release | [![Build Status](https://dev.azure.com/TCSTechCommWorkshop/CDaaSGlobal/_apis/build/status/Global-Extension?branchName=master)](https://dev.azure.com/TCSTechCommWorkshop/CDaaSGlobal/_build/latest?definitionId=1&branchName=master) |
+| Extension consumer | [![Build Status](https://dev.azure.com/TCSTechCommWorkshop/CDaaSGlobal/_apis/build/status/Test-Extension?branchName=main)](https://dev.azure.com/TCSTechCommWorkshop/CDaaSGlobal/_build/latest?definitionId=4&branchName=main) |
 
 This repository contains modules for the workshop on building azure devops extensions
 to help collegues get started with [azure devops extensions](https://docs.microsoft.com/en-us/azure/devops/extend/overview?view=azure-devops)
@@ -53,11 +53,11 @@ The workshop assumes that you know and have access to the following resources:
 
     - _Install the extension._
 
-      ![Azure DevOps Extension task](./demo-images/azure-devops-ext-task.png)
+      <img src="./demo-images/azure-devops-ext-task.png" width="80%" alt="Azure DevOps Extension task">
 
     - _Check if the extension is correctly installed by visiting <OrganizationName> -> Organization settings -> Extensions._
 
-      ![Extension correctly installed](./demo-images/prereq-extension-installed.png)
+      <img src="./demo-images/prereq-extension-installed.png" width="80%" alt="Extension correctly installed">
 
 6. Clone the repository code and delete the current git remote using below steps.
 (We will upload the same code to the azure repository).
@@ -152,7 +152,56 @@ with the organization where you're trying to use.
 
 ### Install the extension
 
+The azure devops extension gets automatically installed in the target organization
+when the build is triggered using the azure pipelines.
 
+_You can verify whether the extension is installed properly by visiting <OrganizationName> -> Organization settings -> Extensions._
+or `https://dev.azure.com/<OrganizationName>/_settings/extensions?tab=installed`.
 
-### Setup the pipeline
+<img src="./demo-images/installed-extension-preview.png" width="70%">
 
+### Setup the consumer pipeline
+
+Now, we are ready to test our azure devops extension tasks in all the shared organizations.
+Your personal Azure DevOps might allow pipelines to execute only in one project space.
+If you're able to run pipelines in different projects in the same organization, you can
+set up the below pipeline anywhere within the shared organizations.
+
+1. Create another repository in the same organization and project.
+
+2. Create a new pipeline using the following steps:
+
+    1. Click the pipelines icon in the azure devops platform.
+
+    2. Click on `[ New Pipeline ]` button.
+
+    3. Select following responses when prompted:
+
+        - Where is your code: Azure Repos Git
+
+        - Select the repository: <YOUR-CONSUMER-REPOSITORY>
+
+        - Configure your pipeline: Starter pipeline
+
+3. Look for the `HelloWorld` and `TwoSum` tasks in the tasks pane. And add them.
+
+4. Your final pipeline shoudl look like below yaml.
+
+    ```yaml
+    trigger:
+    # the current branch that you're in
+    - main
+    - master
+
+    pool:
+      vmImage: ubuntu-20.04
+
+    steps:
+    - task: HelloWorld@0
+    - task: TwoSum@0
+      inputs:
+        firstNumber: '7'
+        secondNumber: '6'
+    ```
+
+> Please refer to the successful release and test pipelines [here](#azure-devops-extensions-workshop).

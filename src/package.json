@@ -61,7 +61,7 @@
   "nyc": {
     "check-coverage": true,
     "per-file": true,
-    "lines": 50,
+    "lines": 80,
     "all": true,
     "extends": "@istanbuljs/nyc-config-typescript",
     "include": [
