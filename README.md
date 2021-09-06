@@ -185,7 +185,7 @@ set up the below pipeline anywhere within the shared organizations.
 
 3. Look for the `HelloWorld` and `TwoSum` tasks in the tasks pane. And add them.
 
-4. Your final pipeline shoudl look like below yaml.
+4. Your final pipeline should look like below yaml.
 
     ```yaml
     trigger:
