@@ -4,9 +4,9 @@ on:
   push:
     branches: 
       # - master
-      - develop
+      # - develop
       # match an pushes on feature/* and feature/<any sub branch>/*
-      - 'feature/**'
+      # - 'feature/**'
     # don't run when changes made to these folders 
     paths-ignore:
       - '.vscode/**'
@@ -15,10 +15,10 @@ on:
 
   pull_request:
     branches: 
-      - master
-      - develop
+      # - master
+      # - develop
       # match an pushes on feature/* and feature/<any sub branch>/*
-      - 'feature/**'
+      # - 'feature/**'
 
 env:
   # the name of the azure devops organization where the extension will be shared

@@ -16,7 +16,7 @@ const run = async (): Promise<void> => {
 
     // Add your logic here...
     // Add the firstNumber and secondNumber variable and store it in the sum variable.
-    const sum: number = firstNumber + secondNumber;
+    const sum: number = 0;
     console.log(`The sum of ${firstNumber} and ${secondNumber} is ${sum}`);
 
     tl.setResult(tl.TaskResult.Succeeded, 'Demo task executed successfully');
