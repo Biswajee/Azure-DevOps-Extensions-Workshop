@@ -11,28 +11,32 @@ to help collegues get started with [azure devops extensions](https://docs.micros
 <details>
 <summary><b>Table of Contents</b> <I>(click to open)</I></summary>
 
-- [Prerequisites](#prerequisites)
+- [Great to Have](#great-to-have)
 - [Preparing the extension](#preparing-the-extension)
   - [Setup the workspace](#setup-the-workspace)
   - [Setup the marketplace service connection](#setup-the-marketplace-service-connection)
   - [Create the publisher](#create-the-publisher)
   - [Setup the Azure DevOps Pipeline](#setup-the-azure-devops-pipeline)
 - [Using the extension](#using-the-extension)
-  - [Install the extension](install-the-extension)
+  - [Install the extension](#install-the-extension)
   - [Setup the consumer pipeline](#setup-the-consumer-pipeline)
+- [FAQ](#faq)
 
 </details>
 
-## Prerequisites
+## Great to Have
 
-The workshop assumes that you know and have access to the following resources:
+The workshop assumes that you have access to the following resources:
 
-- [x] Javascript/Typescript
-- [x] Sinon, Mocha, Chai testing
-- [x] Linux as OS or WSL on Windows
-- [x] Node.js
-- [x] GNU Make
 - [x] [Azure DevOps Account](https://azure.microsoft.com/en-us/services/devops/)
+- [x] [Node.js](https://nodejs.org/en/download/)
+- [x] Linux or [WSL on Windows](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+- [x] GNU Make (Optional) [Windows](https://sourceforge.net/projects/gnuwin32/)
+
+The workshop assumes that you have basic knowledge on:
+
+- [x] [Javascript/Typescript](https://www.typescriptlang.org/)
+- [x] [Sinon](https://sinonjs.org/), [Mocha](https://mochajs.org/), [Chai](https://www.chaijs.com/) testing
 
 ## Preparing the extension
 
@@ -42,11 +46,9 @@ The workshop assumes that you know and have access to the following resources:
 
 2. Create an organization. You can provide any name, make sure it's a unique one.
 
-3. Create 2 projects by clicking the `New Project` button.
+3. Create a project by clicking the `New Project` button.
 
-    - The first project will hoist your extension-code and release pipeline.
-
-    - The purpose of the second project is to demonstrate that extension tasks are avalable cross-organization.
+    > The project will hoist your extension-code and release pipeline.
 
 4. Create a repository in the first project space for your extension code.
 
@@ -65,7 +67,7 @@ The workshop assumes that you know and have access to the following resources:
 
     ```shell
     # Git clone the repository
-    https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop.git
+    git clone https://github.com/Biswajee/Azure-DevOps-Extensions-Workshop.git
 
     # Remove the remote url for the cloned repo
     git remote remove origin
@@ -85,13 +87,19 @@ Horray! You've completed the first subtask 🎉🎉
 
 2. `[User Settings]` > `[Personal access tokens]` > `[ + New Token]`.
 
+    > Select **All accessible organizations** under **Organization** while setting up the token.
+    Please provide **full access** to your token for the demo purpose. Generate your token and
+    keep a copy of the same.
+
     ![User settings location](./demo-images/user-settings.png)
 
 3. `[Project Settings]` > `[Service Connections]` > `[Create Service Connection]`.
 
 4. In the search bar, find **Visual Studio Marketplace**. Click Next.
 
-5. Add your personal access token that you copied.
+    ![User settings location](./demo-images/new-service-connection.png)
+
+5. Add your personal access token that you copied earlier.
 
 6. Provide the name of the service connection and an optional description.
 
@@ -205,4 +213,31 @@ set up the below pipeline anywhere within the shared organizations.
         secondNumber: '6'
     ```
 
-> Please refer to the successful release and test pipelines [here](#azure-devops-extensions-workshop).
+Please refer to the successful release and test pipelines [here](#azure-devops-extensions-workshop).
+
+## FAQ
+
+### The Azure pipelines fails after creating the pipeline
+
+If you face the below error message, please have a look at the [Getting-Started](./Getting-Started.md) document.
+
+> No hosted parallelism has been purchased or granted. To request a free parallelism
+grant, please fill out the following form https://aka.ms/azpipelines-parallelism-request
+
+If you encounter other issues, please let our SMEs know about it 😊
+
+### The pipeline fails during 'Run tests' step
+
+Please consider checking if your program produces the expected output.
+Possibly, you've forgotten to modify the logic inside the `src > TwoSum > index.ts` file.
+
+### How can I edit the details in the extension page?
+
+Please find the [overview.md](./src/overview.md) and modify it's contents to
+update the extension page.
+
+## Conclusion
+
+Thank you for joining the session to learn and perform hands-on with the Azure DevOps Extension
+exercises. Learn more about building azure devops extensions and its advantages
+[here](https://docs.microsoft.com/en-us/azure/devops/extend/overview?view=azure-devops).
