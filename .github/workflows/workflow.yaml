@@ -1,20 +1,20 @@
 name: azure-devops-extension-workshop
 
-on:
-  push:
-    branches: 
+# on:
+  # push:
+  #   branches: 
       # - master
       # - develop
       # match an pushes on feature/* and feature/<any sub branch>/*
       # - 'feature/**'
     # don't run when changes made to these folders 
-    paths-ignore:
-      - '.vscode/**'
-      - 'demo-images/**'
-      - README.md
+  #   paths-ignore:
+  #     - '.vscode/**'
+  #     - 'demo-images/**'
+  #     - README.md
 
-  pull_request:
-    branches: 
+  # pull_request:
+  #   branches: 
       # - master
       # - develop
       # match an pushes on feature/* and feature/<any sub branch>/*
